@@ -1810,11 +1810,31 @@ h2 em {
 
 .checkout-item {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 14px;
   padding: 9px 0;
   border-bottom: 1px solid #eee8eb;
   font-size: 0.92rem;
+}
+
+.checkout-item-image {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 76px;
+  object-fit: cover;
+}
+
+.checkout-item-details {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.checkout-item-details span {
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .checkout-total-row {
@@ -1905,5 +1925,114 @@ h2 em {
     max-height: 96vh;
     padding: 25px 18px;
     margin: auto 0;
+  }
+}
+
+/* ==========================================
+   T-CLOSET — MODERN ANIMATED PRODUCT CARDS
+========================================== */
+
+.product-card {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(
+      130deg,
+      #f4b7ca,
+      #d9c9ff,
+      #ffb66d,
+      #b9e4f4,
+      #e94f86
+    ) border-box;
+
+  background-size: 100% 100%, 300% 300%;
+  animation: productBorderFlow 7s ease infinite;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@keyframes productBorderFlow {
+  0% {
+    background-position: 0 0, 0% 50%;
+  }
+
+  50% {
+    background-position: 0 0, 100% 50%;
+  }
+
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+}
+
+/* Lift the product slightly when hovered */
+.product-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px rgba(45, 25, 42, 0.12);
+}
+
+/* Make product images feel more interactive */
+.product-image-wrap {
+  overflow: hidden;
+  border-radius: 5px;
+  background: #f5edf1;
+}
+
+.product-image-wrap img {
+  transition:
+    transform 0.6s cubic-bezier(.2,.7,.2,1),
+    filter 0.4s ease;
+}
+
+.product-card:hover .product-image-wrap img {
+  transform: scale(1.075);
+  filter: saturate(1.08);
+}
+
+/* Make the quick-add button appear smoothly */
+.quick-add {
+  border-radius: 3px;
+  letter-spacing: 1px;
+}
+
+.product-card:hover .quick-add {
+  transform: translateY(0);
+}
+
+/* Improve the product name and price area */
+.product-info {
+  padding: 13px 7px 9px;
+}
+
+.product-info h3 {
+  transition: color 0.25s ease;
+}
+
+.product-card:hover .product-info h3 {
+  color: var(--hotpink);
+}
+
+/* Accessible motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .product-card {
+    animation: none;
+    transition: none;
+  }
+
+  .product-card:hover {
+    transform: none;
+  }
+
+  .product-image-wrap img,
+  .quick-add {
+    transition: none;
   }
 }
