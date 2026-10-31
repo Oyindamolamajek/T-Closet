@@ -357,7 +357,263 @@ const products = [
     badge: "",
     image: "photo-1553062407-98eeb64c6a62",
     description: "A practical backpack-inspired bag for commuting and everyday essentials."
-  }
+  },
+  
+ // NEW FASHION EDIT — ADDITIONS
+
+ {
+   id:26,
+   name:'The Power Dressing Set',
+   category:'Clothing',
+   price:35000,
+   colour:'Chocolate brown',
+   badge:'New style edit',
+   image:'photo-1515886657613-9f3515b0c78f',
+   tags:['bold','smart casual','structured','earth','warm'],
+   fit:'Relaxed coordinated fit',
+   desc:'A modern outfit combination for a confident, polished look.'
+ },
+ {
+   id:27,
+   name:'The Statement Midi Dress',
+   category:'Clothing',
+   price:29000,
+   colour:'Black',
+   badge:'Going out edit',
+   image:'photo-1539109136881-3be0616acf4b',
+   tags:['glam','romantic','classic','black','cool'],
+   fit:'Flowing midi silhouette',
+   desc:'An elegant statement piece for dinners and special occasions.'
+ },
+ {
+   id:28,
+   name:'Retro Street Sneakers',
+   category:'Shoes',
+   price:28000,
+   colour:'White / red',
+   badge:'Street-style pick',
+   image:'photo-1600185365483-26d7a4cc7519',
+   tags:['streetwear','sporty','casual','bold','neutral'],
+   fit:'Check available sizes',
+   desc:'A sporty everyday shoe for relaxed outfits and streetwear looks.'
+ },
+ {
+   id:29,
+   name:'The Modern Slingback',
+   category:'Shoes',
+   price:31000,
+   colour:'Black',
+   badge:'Dress it up',
+   image:'photo-1543163521-1bf539c55dd2',
+   tags:['classic','glam','feminine','black','cool'],
+   fit:'Check size availability',
+   desc:'A polished shoe for occasions when you want a more elevated finish.'
+ },
+ {
+   id:30,
+   name:'The Statement Chain',
+   category:'Jewelry',
+   price:9500,
+   colour:'Gold tone',
+   badge:'Statement jewellery',
+   image:'photo-1617038220319-276d3cfab638',
+   tags:['bold','glam','gold','warm'],
+   fit:'Statement necklace',
+   desc:'A bold jewellery piece that gives simple outfits extra personality.'
+ },
+ {
+   id:31,
+   name:'The Layered Luxe Set',
+   category:'Jewelry',
+   price:11500,
+   colour:'Gold / silver tone',
+   badge:'Layering favourite',
+   image:'photo-1611652022419-a9419f74343d',
+   tags:['minimal','glam','classic','gold','cool','warm'],
+   fit:'Layered necklace styling',
+   desc:'Layered jewellery inspiration for an effortless, put-together look.'
+ },
+  // 32. Modern fashion pieces
+ {
+   id: 32,
+   name: 'The Sculpted Blazer Dress',
+   category: 'Clothing',
+   price: 38000,
+   colour: 'Black',
+   badge: 'Trending now',
+   image: 'photo-1591369822096-ffd140ec948f',
+   tags: ['bold', 'glam', 'smart casual', 'black', 'cool'],
+   fit: 'Structured tailored fit',
+   desc: 'A confident blazer dress for dinners, events, and statement outfits.'
+ },
+ {
+   id: 33,
+   name: 'The Statement Floral Maxi',
+   category: 'Clothing',
+   price: 34000,
+   colour: 'Floral mix',
+   badge: 'New arrival',
+   image: 'photo-1525507119028-ed4c629a60a3',
+   tags: ['romantic', 'bold', 'floral', 'warm', 'cool'],
+   fit: 'Flowing maxi silhouette',
+   desc: 'A beautiful floral piece for brunches, celebrations, and special days.'
+ },
+ {
+   id: 34,
+   name: 'The Off-Shoulder Top',
+   category: 'Clothing',
+   price: 16500,
+   colour: 'Cream',
+   badge: 'Style favourite',
+   image: 'photo-1551232864-3f0890e580d9',
+   tags: ['romantic', 'glam', 'feminine', 'neutral', 'warm'],
+   fit: 'Fitted off-shoulder style',
+   desc: 'An elegant top that pairs beautifully with denim, skirts, and tailored trousers.'
+ },
+ {
+   id: 35,
+   name: 'The Barrel-Leg Trouser',
+   category: 'Clothing',
+   price: 27500,
+   colour: 'Chocolate brown',
+   badge: 'Modern essential',
+   image: 'photo-1598554747436-c9293d6a588f',
+   tags: ['classic', 'streetwear', 'relaxed', 'earth', 'warm'],
+   fit: 'Relaxed barrel-leg silhouette',
+   desc: 'A contemporary trouser shape for effortless everyday styling.'
+ },
+ {
+   id: 36,
+   name: 'The Statement Mini Skirt',
+   category: 'Clothing',
+   price: 19500,
+   colour: 'Burgundy',
+   badge: 'Going out',
+   image: 'photo-1515886657613-9f3515b0c78f',
+   tags: ['bold', 'glam', 'feminine', 'warm', 'cool'],
+   fit: 'Mini-length silhouette',
+   desc: 'A statement skirt for pairing with fitted tops, shirts, and heels.'
+ },
+ {
+   id: 37,
+   name: 'The Retro Fashion Sneaker',
+   category: 'Shoes',
+   price: 32000,
+   colour: 'Cream / brown',
+   badge: 'Street-style pick',
+   image: 'photo-1600185365483-26d7a4cc7519',
+   tags: ['streetwear', 'sporty', 'casual', 'earth', 'neutral'],
+   fit: 'Check available shoe sizes',
+   desc: 'A retro-inspired sneaker for casual outfits and everyday movement.'
+ },
+ {
+   id: 38,
+   name: 'The Classic Pointed Pump',
+   category: 'Shoes',
+   price: 29500,
+   colour: 'Burgundy',
+   badge: 'Elegant pick',
+   image: 'photo-1515347619252-60a4bf4fff4f',
+   tags: ['classic', 'glam', 'feminine', 'warm'],
+   fit: 'Pointed-toe heel; check size guide',
+   desc: 'A polished pump that takes an outfit from simple to sophisticated.'
+ },
+ {
+   id: 39,
+   name: 'The Modern Ballet Flat',
+   category: 'Shoes',
+   price: 22500,
+   colour: 'Black',
+   badge: 'Everyday chic',
+   image: 'photo-1531310197839-ccf54634509e',
+   tags: ['minimal', 'classic', 'casual', 'black', 'cool'],
+   fit: 'Flat slip-on style',
+   desc: 'A comfortable-looking, elegant flat for workdays and casual outings.'
+ },
+ {
+   id: 40,
+   name: 'The Slouchy Statement Bag',
+   category: 'Bags',
+   price: 28500,
+   colour: 'Chocolate',
+   badge: 'Fashion edit',
+   image: 'photo-1584917865442-de89df76afd3',
+   tags: ['classic', 'bold', 'minimal', 'earth', 'warm'],
+   fit: 'Roomy shoulder carry',
+   desc: 'A relaxed statement bag that adds texture and character to everyday looks.'
+ },
+ {
+   id: 41,
+   name: 'The Mini Top-Handle Bag',
+   category: 'Bags',
+   price: 24000,
+   colour: 'Red',
+   badge: 'Colour pop',
+   image: 'photo-1566150905458-1bf1fc113f0d',
+   tags: ['bold', 'glam', 'red', 'warm'],
+   fit: 'Compact top-handle style',
+   desc: 'A playful mini bag that brings a pop of colour to a neutral outfit.'
+ },
+ {
+   id: 42,
+   name: 'The Layered Statement Necklace',
+   category: 'Jewelry',
+   price: 12500,
+   colour: 'Gold tone',
+   badge: 'Layering favourite',
+   image: 'photo-1611652022419-a9419f74343d',
+   tags: ['glam', 'bold', 'gold', 'warm'],
+   fit: 'Layered necklace design',
+   desc: 'A layered necklace that makes even a simple outfit feel considered.'
+ },
+ {
+   id: 43,
+   name: 'The Sculptural Earrings',
+   category: 'Jewelry',
+   price: 9500,
+   colour: 'Gold tone',
+   badge: 'Statement detail',
+   image: 'photo-1535632066927-ab7c9ab60908',
+   tags: ['bold', 'glam', 'classic', 'gold', 'warm'],
+   fit: 'Statement earrings',
+   desc: 'Sculptural earrings for adding personality to day and evening outfits.'
+ },
+ {
+   id: 44,
+   name: 'The Chunky Bangle Stack',
+   category: 'Jewelry',
+   price: 8500,
+   colour: 'Gold / mixed',
+   badge: 'Stack it up',
+   image: 'photo-1611591437281-460bfbe1220a',
+   tags: ['bold', 'glam', 'playful', 'gold', 'warm'],
+   fit: 'Stackable bracelet set',
+   desc: 'A bold bangle combination for a more expressive jewellery look.'
+ },
+ {
+   id: 45,
+   name: 'The Silk-Feel Statement Scarf',
+   category: 'Accessories',
+   price: 7500,
+   colour: 'Printed mix',
+   badge: 'Styling essential',
+   image: 'photo-1601924994987-69e26d50dc26',
+   tags: ['classic', 'romantic', 'bold', 'playful', 'warm'],
+   fit: 'One-size accessory',
+   desc: 'Wear it around your neck, tie it to your bag, or style it as a headscarf.'
+ },
+ {
+   id: 46,
+   name: 'The Oversized Shield Sunglasses',
+   category: 'Accessories',
+   price: 11000,
+   colour: 'Black',
+   badge: 'Bold finishing touch',
+   image: 'photo-1511499767150-a48a237f0083',
+   tags: ['bold', 'glam', 'streetwear', 'black', 'cool'],
+   fit: 'One-size accessory',
+   desc: 'Oversized sunglasses for a confident, fashion-forward finish.'
+ }
 ];
 
 /* ==========================================
@@ -374,7 +630,8 @@ const state = {
   quizStep: 0,
   favoritesOnly: false,
   selectedProduct: null,
-  selectedSize: ""
+  selectedSize: "",
+  selectedColor: ""
 };
 
 const $ = (selector, parent = document) =>
@@ -392,6 +649,41 @@ const money = amount =>
 
 const imageURL = (photo, width = 700) =>
   `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=${width}&q=80`;
+
+function getProductSizes(product) {
+  if (product.sizes?.length) return product.sizes;
+
+  if (["Women", "Men", "Clothing"].includes(product.category)) {
+    return product.category === "Men"
+      ? ["S", "M", "L", "XL", "XXL"]
+      : ["S", "M", "L", "XL"];
+  }
+
+  if (product.category === "Shoes") {
+    return ["36", "37", "38", "39", "40", "41", "42", "43", "44"];
+  }
+
+  return ["One size"];
+}
+
+function getProductColors(product) {
+  if (product.colors?.length) return product.colors;
+
+  const categoryColors = {
+    Women: ["Black", "White", "Cream", "Burgundy"],
+    Men: ["Black", "White", "Grey", "Navy"],
+    Clothing: ["Black", "White", "Cream", "Burgundy"],
+    Shoes: ["Black", "White", "Brown"],
+    Bags: ["Black", "Brown", "Cream"],
+    Jewelry: ["Gold", "Silver"],
+    Accessories: ["Black", "Brown", "Gold"]
+  };
+  const listedColor = product.color || product.colour;
+  const options = [listedColor, ...(categoryColors[product.category] || [])]
+    .filter(Boolean);
+
+  return [...new Set(options)];
+}
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, character => ({
@@ -424,14 +716,15 @@ function getFilteredProducts() {
   let list = products.filter(product => {
     const matchesCategory =
       state.category === "All" ||
-      product.category === state.category;
+      product.category === state.category ||
+      (state.category === "Women" && product.category === "Clothing");
 
     const searchText = [
       product.name,
       product.category,
-      product.color,
-      product.description,
-      ...product.style
+      product.color || product.colour,
+      product.description || product.desc,
+      ...(product.style || product.tags || [])
     ].join(" ").toLowerCase();
 
     const matchesSearch =
@@ -504,10 +797,17 @@ function renderProducts(target = "#productGrid", list = getFilteredProducts()) {
   `).join("");
 
   if (target === "#productGrid") {
-    $("#resultsCount").textContent =
-      `${list.length} ${list.length === 1 ? "piece" : "pieces"} to explore`;
+    const resultsCount = $("#resultsCount");
+    if (resultsCount) {
+      resultsCount.textContent =
+        `${list.length} ${list.length === 1 ? "piece" : "pieces"} to explore`;
+    }
 
-    $("#emptyState").hidden = list.length !== 0;
+    const emptyState = $("#emptyState");
+    if (emptyState) {
+      emptyState.hidden = list.length !== 0;
+      emptyState.classList.toggle("hidden", list.length !== 0);
+    }
     grid.hidden = list.length === 0;
   }
 }
@@ -542,7 +842,8 @@ $("#searchToggle").addEventListener("click", () => {
   panel.hidden = !panel.hidden;
 
   if (!panel.hidden) {
-    $("#searchInput").focus();
+    $("#shop").scrollIntoView({ behavior: "smooth" });
+    $("#searchInput").focus({ preventScroll: true });
   }
 });
 
@@ -615,12 +916,13 @@ $("#favoritesToggle").addEventListener("click", () => {
    CART
 ========================================== */
 
-function addToCart(productId, size = "") {
+function addToCart(productId, size = "", color = "") {
   const product = products.find(item => item.id === productId);
   if (!product) return;
 
-  const chosenSize = size || product.sizes[0] || "One size";
-  const key = `${productId}:${chosenSize}`;
+  const chosenSize = size || getProductSizes(product)[0];
+  const chosenColor = color || getProductColors(product)[0];
+  const key = `${productId}:${chosenSize}:${chosenColor}`;
 
   if (state.cart.has(key)) {
     state.cart.get(key).quantity += 1;
@@ -628,6 +930,7 @@ function addToCart(productId, size = "") {
     state.cart.set(key, {
       productId,
       size: chosenSize,
+      color: chosenColor,
       quantity: 1
     });
   }
@@ -680,6 +983,7 @@ function renderCart() {
         <div>
           <h3>${escapeHTML(product.name)}</h3>
           <p>${money(product.price)}</p>
+          <small>Color: ${escapeHTML(item.color)}</small>
           <small>Size: ${escapeHTML(item.size)}</small>
 
           <div class="quantity-controls">
@@ -759,8 +1063,11 @@ function openProductModal(productId) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
 
+  const sizes = getProductSizes(product);
+  const colors = getProductColors(product);
   state.selectedProduct = product;
-  state.selectedSize = product.sizes[0] || "One size";
+  state.selectedSize = sizes[0];
+  state.selectedColor = colors[0];
 
   $("#productModalContent").innerHTML = `
     <div class="product-modal-content">
@@ -773,18 +1080,24 @@ function openProductModal(productId) {
         <p class="eyebrow">${escapeHTML(product.category)} / T-CLOSET EDIT</p>
         <h2 id="modalProductName">${escapeHTML(product.name)}</h2>
         <p class="modal-price">${money(product.price)}</p>
-        <p>${escapeHTML(product.description)}</p>
-        <p><strong>Colour:</strong> ${escapeHTML(product.color)}</p>
+        <p>${escapeHTML(product.description || product.desc || "")}</p>
+
+        <label class="field-label" for="productColor">Choose a colour</label>
+        <select class="field-select" id="productColor">
+          ${colors.map(color => `
+            <option value="${escapeHTML(color)}">${escapeHTML(color)}</option>
+          `).join("")}
+        </select>
 
         <label class="field-label" for="productSize">Choose your size</label>
         <select class="field-select" id="productSize">
-          ${product.sizes.map(size => `
+          ${sizes.map(size => `
             <option value="${escapeHTML(size)}">${escapeHTML(size)}</option>
           `).join("")}
         </select>
 
         <p style="font-size:10px;">
-          Please confirm the actual size chart and availability with T-CLOSET.
+          Sample options only. Please confirm actual colours, sizes, and availability with T-CLOSET.
         </p>
 
         <button class="btn btn-dark modal-add" id="modalAddToCart">
@@ -799,7 +1112,8 @@ function openProductModal(productId) {
 
   $("#modalAddToCart").addEventListener("click", () => {
     const size = $("#productSize").value;
-    addToCart(product.id, size);
+    const color = $("#productColor").value;
+    addToCart(product.id, size, color);
     closeModal("productModal");
     openCart();
   });
@@ -828,11 +1142,7 @@ $("#productGrid").addEventListener("click", event => {
     const product = products.find(p => p.id === id);
     if (!product) return;
 
-    if (product.sizes.length > 1) {
-      openProductModal(id);
-    } else {
-      addToCart(id, product.sizes[0]);
-    }
+    openProductModal(id);
   }
 
   if (button.dataset.action === "details") {
@@ -1026,14 +1336,16 @@ function getRecommendedProducts() {
 
     if (
       answers.style &&
-      product.style.includes(answers.style)
+      (product.style || product.tags || []).some(
+        style => style.toLowerCase() === answers.style.toLowerCase()
+      )
     ) {
       score += 4;
     }
 
     if (
       answers.occasion &&
-      product.occasion.includes(answers.occasion)
+      (product.occasion || []).includes(answers.occasion)
     ) {
       score += 3;
     }
@@ -1041,35 +1353,36 @@ function getRecommendedProducts() {
     if (
       answers.fit &&
       answers.fit !== "No preference" &&
-      product.fit.includes(answers.fit)
+      Array.isArray(product.fit) && product.fit.includes(answers.fit)
     ) {
       score += 2;
     }
 
     const color = answers.color;
+    const productColor = (product.color || product.colour || "").toLowerCase();
 
     if (color === "Black & white" &&
-        ["Black", "White"].includes(product.color)) {
+        ["black", "white"].includes(productColor)) {
       score += 2;
     }
 
     if (color === "Neutrals" &&
-        ["Cream", "Brown", "Nude", "Black", "White"].includes(product.color)) {
+        ["cream", "brown", "nude", "black", "white"].some(value => productColor.includes(value))) {
       score += 2;
     }
 
     if (color === "Bright colours" &&
-        ["Pink", "Blue"].includes(product.color)) {
+        ["pink", "blue"].some(value => productColor.includes(value))) {
       score += 2;
     }
 
     if (color === "Pastels" &&
-        ["Pink", "Cream"].includes(product.color)) {
+        ["pink", "cream"].some(value => productColor.includes(value))) {
       score += 2;
     }
 
     if (color === "Jewel tones" &&
-        ["Burgundy", "Gold"].includes(product.color)) {
+        ["burgundy", "gold"].some(value => productColor.includes(value))) {
       score += 2;
     }
 
@@ -1355,34 +1668,52 @@ document.getElementById("logoutButton").addEventListener("click", () => {
     return Number(amount) || 0;
   }
 
-  function getCartItemsForCheckout() {
-    const cartElement = document.getElementById("cartItems");
+  function renderCheckoutItems() {
+    checkoutItems.innerHTML = "";
 
-    if (!cartElement) return [];
+    state.cart.forEach((cartItem) => {
+      const product = products.find((entry) => entry.id === cartItem.productId);
+      if (!product) return;
 
-    // Read the existing cart display without changing the cart.
-    return Array.from(cartElement.children)
-      .filter((item) => item.textContent.trim())
-      .map((item) => item.textContent.trim());
+      const row = document.createElement("div");
+      row.className = "checkout-item";
+
+      const image = document.createElement("img");
+      image.className = "checkout-item-image";
+      image.src = imageURL(product.image, 220);
+      image.alt = product.name;
+      image.onerror = () => {
+        image.onerror = null;
+        image.src = "https://placehold.co/220x280/f2dce5/762746?text=T-CLOSET";
+      };
+
+      const details = document.createElement("div");
+      details.className = "checkout-item-details";
+
+      const name = document.createElement("strong");
+      name.textContent = product.name;
+
+      const options = document.createElement("span");
+      options.textContent = `Colour: ${cartItem.color} · Size: ${cartItem.size} · Qty: ${cartItem.quantity}`;
+
+      const price = document.createElement("strong");
+      price.textContent = money(product.price * cartItem.quantity);
+
+      details.append(name, options);
+      row.append(image, details, price);
+      checkoutItems.appendChild(row);
+    });
   }
 
   function openCheckout() {
-    const cartLines = getCartItemsForCheckout();
     const total = getCartTotal();
 
-    if (!cartLines.length || total <= 0) {
+    if (state.cart.size === 0 || total <= 0) {
       alert("Your shopping bag is empty. Add an item before checking out.");
       return;
     }
 
-    checkoutItems.innerHTML = "";
-
-    cartLines.forEach((line) => {
-      const item = document.createElement("div");
-      item.className = "checkout-item";
-      item.textContent = line;
-      checkoutItems.appendChild(item);
-    });
+    renderCheckoutItems();
 
     checkoutSubtotal.textContent = `₦${total.toLocaleString("en-NG")}`;
 
