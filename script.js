@@ -1195,44 +1195,46 @@ document.addEventListener("keydown", event => {
 const quizQuestions = [
   {
     key: "style",
-    title: "Which style feels most like you?",
-    subtitle: "Pick the aesthetic you naturally gravitate towards.",
+    title: "Which look would you reach for first?",
+    subtitle: "Choose the kind of outfit that feels most like you.",
     options: [
       "Minimalist",
+      "Everyday casual",
       "Streetwear",
-      "Elegant",
-      "Casual",
       "Classic",
-      "Bold"
+      "Elegant",
+      "Bold & expressive",
+      "Soft & romantic"
     ]
   },
   {
     key: "occasion",
-    title: "What are you dressing for?",
-    subtitle: "We'll use this to narrow down your recommendations.",
+    title: "Where would you wear your next favourite?",
+    subtitle: "Think about the plans you shop for most often.",
     options: [
-      "Casual",
-      "Work",
-      "Party",
+      "Everyday",
+      "Work or school",
+      "Party or event",
       "Date night",
       "Travel"
     ]
   },
   {
     key: "fit",
-    title: "What kind of fit do you prefer?",
-    subtitle: "Choose a comfortable fit, not a body ideal.",
+    title: "How do you like your clothes to fit?",
+    subtitle: "Choose the shape you find most comfortable.",
     options: [
       "Relaxed",
       "Regular",
       "Oversized",
+      "Structured",
       "No preference"
     ]
   },
   {
     key: "color",
     title: "What colours do you love?",
-    subtitle: "Choose a colour family you'd enjoy wearing.",
+    subtitle: "Pick the palette you naturally reach for.",
     options: [
       "Black & white",
       "Neutrals",
@@ -1330,68 +1332,73 @@ function handleQuizClick(event) {
 
 function getRecommendedProducts() {
   const answers = state.quizAnswers;
+  const styleMatches = {
+    "Minimalist": ["minimalist", "minimal"],
+    "Everyday casual": ["casual", "everyday"],
+    "Streetwear": ["streetwear", "sporty"],
+    "Classic": ["classic", "timeless"],
+    "Elegant": ["elegant", "glam", "feminine", "polished"],
+    "Bold & expressive": ["bold", "statement", "playful"],
+    "Soft & romantic": ["romantic", "floral", "feminine", "pastel"]
+  };
+  const occasionMatches = {
+    "Everyday": ["casual", "everyday"],
+    "Work or school": ["work", "school", "smart casual"],
+    "Party or event": ["party", "event", "occasion", "glam", "going out"],
+    "Date night": ["date night", "romantic", "going out"],
+    "Travel": ["travel", "commute"]
+  };
+  const fitMatches = {
+    "Relaxed": ["relaxed", "loose"],
+    "Regular": ["regular", "classic fit"],
+    "Oversized": ["oversized", "oversize"],
+    "Structured": ["structured", "tailored", "fitted"]
+  };
+  const colorMatches = {
+    "Black & white": ["black", "white"],
+    "Neutrals": ["neutral", "cream", "brown", "nude", "beige", "earth"],
+    "Bright colours": ["bright", "pink", "blue", "red"],
+    "Pastels": ["pastel", "pink", "cream"],
+    "Jewel tones": ["jewel", "burgundy", "gold", "emerald", "ruby"]
+  };
 
-  let ranked = products.map(product => {
+  const hasMatch = (text, terms) =>
+    terms?.some(term => text.includes(term));
+
+  const ranked = products.map(product => {
+    const styleTags = [
+      ...(product.style || []),
+      ...(product.tags || [])
+    ].join(" ").toLowerCase();
+    const occasionTags = [
+      ...(product.occasion || []),
+      ...(product.tags || []),
+      product.description || product.desc || ""
+    ].join(" ").toLowerCase();
+    const fitTags = [
+      ...(Array.isArray(product.fit) ? product.fit : [product.fit || ""]),
+      ...(product.tags || [])
+    ].join(" ").toLowerCase();
+    const colorTags = [
+      product.color || "",
+      product.colour || "",
+      ...(product.tags || [])
+    ].join(" ").toLowerCase();
     let score = 0;
 
-    if (
-      answers.style &&
-      (product.style || product.tags || []).some(
-        style => style.toLowerCase() === answers.style.toLowerCase()
-      )
-    ) {
-      score += 4;
-    }
-
-    if (
-      answers.occasion &&
-      (product.occasion || []).includes(answers.occasion)
-    ) {
-      score += 3;
-    }
-
-    if (
-      answers.fit &&
-      answers.fit !== "No preference" &&
-      Array.isArray(product.fit) && product.fit.includes(answers.fit)
-    ) {
-      score += 2;
-    }
-
-    const color = answers.color;
-    const productColor = (product.color || product.colour || "").toLowerCase();
-
-    if (color === "Black & white" &&
-        ["black", "white"].includes(productColor)) {
-      score += 2;
-    }
-
-    if (color === "Neutrals" &&
-        ["cream", "brown", "nude", "black", "white"].some(value => productColor.includes(value))) {
-      score += 2;
-    }
-
-    if (color === "Bright colours" &&
-        ["pink", "blue"].some(value => productColor.includes(value))) {
-      score += 2;
-    }
-
-    if (color === "Pastels" &&
-        ["pink", "cream"].some(value => productColor.includes(value))) {
-      score += 2;
-    }
-
-    if (color === "Jewel tones" &&
-        ["burgundy", "gold"].some(value => productColor.includes(value))) {
-      score += 2;
-    }
+    if (hasMatch(styleTags, styleMatches[answers.style])) score += 6;
+    if (hasMatch(occasionTags, occasionMatches[answers.occasion])) score += 4;
+    if (answers.fit !== "No preference" &&
+        hasMatch(fitTags, fitMatches[answers.fit])) score += 2;
+    if (answers.color !== "No preference" &&
+        hasMatch(colorTags, colorMatches[answers.color])) score += 2;
 
     return { product, score };
   });
 
-  ranked.sort((a, b) => b.score - a.score);
+  ranked.sort((a, b) => b.score - a.score || a.product.id - b.product.id);
 
-  return ranked.slice(0, 6).map(item => item.product);
+  return ranked.filter(item => item.score > 0).slice(0, 6).map(item => item.product);
 }
 
 function showQuizResults() {
@@ -1401,17 +1408,18 @@ function showQuizResults() {
   $("#quizContent").innerHTML = `
     <div class="quiz-result">
       <p class="eyebrow">YOUR PERSONAL STYLE EDIT</p>
-      <h2 id="quizTitle">Your vibe, your rules. ✨</h2>
+      <h2 id="quizTitle">Your ${escapeHTML(answers.style)} edit.</h2>
 
       <p>
-        Your style preference is <strong>${escapeHTML(answers.style)}</strong>,
-        for <strong>${escapeHTML(answers.occasion)}</strong> occasions,
-        with a <strong>${escapeHTML(answers.fit)}</strong> fit preference.
+        Picked for your <strong>${escapeHTML(answers.style)}</strong> style
+        and <strong>${escapeHTML(answers.occasion)}</strong> plans, with your
+        <strong>${escapeHTML(answers.fit)}</strong> fit and
+        <strong>${escapeHTML(answers.color)}</strong> palette in mind.
       </p>
 
       <p style="margin-top:10px;">
-        Here are some pieces selected using your answers.
-        These are suggestions, not rules — wear what makes you feel good.
+        These ${recommendations.length} pieces ranked highest against your answers.
+        They are suggestions, not rules — wear what makes you feel good.
       </p>
 
       <div class="product-grid" id="quizRecommendations"></div>
@@ -1507,18 +1515,26 @@ updateFavoriteCount();
 
 
 /* ==========================================
-   T-CLOSET AUTH SCREEN NAVIGATION
-   Authentication provider integration is
-   required before registration/login is live.
+   T-CLOSET AUTHENTICATION
 ========================================== */
 
 const authScreen = document.getElementById("authScreen");
 const mainContent = document.querySelector("main");
 const footer = document.querySelector(".footer");
 const accountToggle = document.getElementById("accountToggle");
+const authConfig = window.TCLOSET_SUPABASE_CONFIG;
+const hasAuthConfig = Boolean(
+  authConfig?.url?.startsWith("https://") &&
+  authConfig?.publishableKey &&
+  !authConfig.publishableKey.includes("YOUR_")
+);
+const supabaseClient = hasAuthConfig && window.supabase?.createClient
+  ? window.supabase.createClient(authConfig.url, authConfig.publishableKey)
+  : null;
 
 let currentAuthView = "login";
-let isGuest = true;
+let currentAuthUser = null;
+let pendingVerificationEmail = "";
 
 function showAuthView(view) {
   currentAuthView = view;
@@ -1547,9 +1563,7 @@ function openAuthScreen(view = "login") {
   authScreen.hidden = false;
   mainContent.hidden = true;
   footer.hidden = true;
-
   showAuthView(view);
-
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -1557,17 +1571,41 @@ function closeAuthScreen() {
   authScreen.hidden = true;
   mainContent.hidden = false;
   footer.hidden = false;
-
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+function updateAuthUser(user) {
+  currentAuthUser = user;
+  const username = user?.user_metadata?.username;
+  const emailName = user?.email?.split("@")[0];
+  const displayName = username || emailName || "Member";
+
+  document.getElementById("accountLabel").textContent = user
+    ? displayName
+    : "Login";
+
+  if (user) {
+    document.getElementById("accountWelcome").textContent =
+      `Welcome, ${displayName}.`;
+    document.getElementById("accountDescription").textContent =
+      `You're signed in as ${user.email}.`;
+  }
+}
+
+function authNotConfiguredMessage() {
+  return "Account sign-in is not configured yet. Add your Supabase project URL and publishable key to supabase-config.js.";
+}
+
+function getAuthRedirectUrl() {
+  if (!["http:", "https:"].includes(window.location.protocol)) return undefined;
+  return window.location.href.split(/[?#]/)[0];
+}
+
 accountToggle.addEventListener("click", () => {
-  openAuthScreen("login");
+  openAuthScreen(currentAuthUser ? "account" : "login");
 });
 
-document.getElementById("authBack").addEventListener("click", () => {
-  closeAuthScreen();
-});
+document.getElementById("authBack").addEventListener("click", closeAuthScreen);
 
 document.querySelectorAll("[data-auth-view]").forEach(button => {
   button.addEventListener("click", () => {
@@ -1575,53 +1613,226 @@ document.querySelectorAll("[data-auth-view]").forEach(button => {
   });
 });
 
+document.querySelectorAll("[data-password-toggle]").forEach(button => {
+  button.addEventListener("click", () => {
+    const passwordInput = document.getElementById(button.dataset.passwordToggle);
+    const showPassword = passwordInput.type === "password";
+
+    passwordInput.type = showPassword ? "text" : "password";
+    button.setAttribute("aria-pressed", String(showPassword));
+    button.setAttribute("aria-label", showPassword ? "Hide password" : "Show password");
+    button.title = showPassword ? "Hide password" : "Show password";
+  });
+});
+
 document.getElementById("guestEntry").addEventListener("click", () => {
-  isGuest = true;
-
-  accountToggle.innerHTML = '♙ <span>Guest</span>';
-
+  document.getElementById("accountLabel").textContent = "Guest";
   closeAuthScreen();
-
   showToast("Welcome! Enjoy exploring T-CLOSET.");
 });
 
-/*
-  These forms are intentionally not connected to a fake
-  login system. Connect them to Supabase Auth before
-  accepting registration or login credentials.
-*/
-
-document.getElementById("registerForm").addEventListener("submit", event => {
+document.getElementById("registerForm").addEventListener("submit", async event => {
   event.preventDefault();
 
-  document.getElementById("registerMessage").textContent =
-    "Account registration is not connected yet. Connect the authentication service to enable secure registration and email verification.";
+  const message = document.getElementById("registerMessage");
+  if (!supabaseClient) {
+    message.textContent = authNotConfiguredMessage();
+    return;
+  }
+
+  const email = document.getElementById("registerEmail").value.trim();
+  const username = document.getElementById("registerUsername").value.trim();
+  const password = document.getElementById("registerPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const submitButton = event.currentTarget.querySelector("button[type='submit']");
+
+  if (password !== confirmPassword) {
+    message.textContent = "Those passwords don't match. Please try again.";
+    return;
+  }
+
+  message.textContent = "Creating your account...";
+  submitButton.disabled = true;
+
+  try {
+    const options = { data: { username } };
+    const emailRedirectTo = getAuthRedirectUrl();
+    if (emailRedirectTo) options.emailRedirectTo = emailRedirectTo;
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options
+    });
+
+    if (error) throw error;
+
+    if (data.session) {
+      updateAuthUser(data.user);
+      showAuthView("account");
+    } else {
+      pendingVerificationEmail = email;
+      document.getElementById("verificationEmail").textContent = email;
+      showAuthView("verify");
+    }
+  } catch (error) {
+    message.textContent = error.message || "We couldn't create your account. Please try again.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
-document.getElementById("loginForm").addEventListener("submit", event => {
+document.getElementById("loginForm").addEventListener("submit", async event => {
   event.preventDefault();
 
-  document.getElementById("loginMessage").textContent =
-    "Login is not connected yet. Connect the authentication service to enable secure username and password login.";
+  const message = document.getElementById("loginMessage");
+  if (!supabaseClient) {
+    message.textContent = authNotConfiguredMessage();
+    return;
+  }
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const submitButton = event.currentTarget.querySelector("button[type='submit']");
+
+  message.textContent = "Signing in...";
+  submitButton.disabled = true;
+
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    updateAuthUser(data.user);
+    showAuthView("account");
+  } catch (error) {
+    message.textContent = error.message || "We couldn't sign you in. Check your email and password.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
-document.getElementById("resendVerification").addEventListener("click", () => {
-  document.getElementById("verifyMessage").textContent =
-    "Email verification must be connected to the authentication service before a verification email can be sent.";
+document.getElementById("magicLoginButton").addEventListener("click", async event => {
+  const emailInput = document.getElementById("loginEmail");
+  const message = document.getElementById("loginMessage");
+
+  if (!emailInput.reportValidity()) return;
+
+  if (!supabaseClient) {
+    message.textContent = authNotConfiguredMessage();
+    return;
+  }
+
+  const button = event.currentTarget;
+  button.disabled = true;
+  message.textContent = "Sending your sign-in link...";
+
+  try {
+    const { error } = await supabaseClient.auth.signInWithOtp({
+      email: emailInput.value.trim(),
+      options: {
+        emailRedirectTo: getAuthRedirectUrl(),
+        shouldCreateUser: false
+      }
+    });
+
+    if (error) throw error;
+
+    message.textContent =
+      "If there is a confirmed account for this email, a sign-in link is on its way. Check your inbox.";
+  } catch (error) {
+    message.textContent = error.message || "We couldn't send a sign-in link. Please try again.";
+  } finally {
+    button.disabled = false;
+  }
 });
 
-document.getElementById("enterShop").addEventListener("click", () => {
-  closeAuthScreen();
+document.getElementById("resendVerification").addEventListener("click", async () => {
+  const message = document.getElementById("verifyMessage");
+  if (!supabaseClient) {
+    message.textContent = authNotConfiguredMessage();
+    return;
+  }
+
+  const email = pendingVerificationEmail ||
+    document.getElementById("registerEmail").value.trim();
+  if (!email) {
+    message.textContent = "Enter your email address again to resend the welcome email.";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resend({
+    type: "signup",
+    email,
+    options: { emailRedirectTo: getAuthRedirectUrl() }
+  });
+  message.textContent = error
+    ? error.message
+    : "A new confirmation email has been sent. Check your inbox.";
 });
 
-document.getElementById("logoutButton").addEventListener("click", () => {
-  isGuest = true;
-  accountToggle.innerHTML = '♙ <span>Login</span>';
+document.getElementById("resendLoginVerification").addEventListener("click", async event => {
+  const email = document.getElementById("loginEmail").value.trim();
+  const message = document.getElementById("loginMessage");
 
+  if (!email) {
+    message.textContent = "Enter your email address above first.";
+    return;
+  }
+
+  if (!supabaseClient) {
+    message.textContent = authNotConfiguredMessage();
+    return;
+  }
+
+  const button = event.currentTarget;
+  button.disabled = true;
+
+  try {
+    const { error } = await supabaseClient.auth.resend({
+      type: "signup",
+      email,
+      options: { emailRedirectTo: getAuthRedirectUrl() }
+    });
+    message.textContent = error
+      ? error.message
+      : "A new confirmation email has been sent. Check your inbox.";
+  } catch (error) {
+    message.textContent = error.message || "We couldn't resend the confirmation email.";
+  } finally {
+    button.disabled = false;
+  }
+});
+
+document.getElementById("enterShop").addEventListener("click", closeAuthScreen);
+
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  if (!supabaseClient) return;
+
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) {
+    document.getElementById("accountDescription").textContent = error.message;
+    return;
+  }
+
+  updateAuthUser(null);
   closeAuthScreen();
   showAuthView("login");
-  showToast("You have returned to guest shopping.");
+  showToast("You have signed out.");
 });
+
+if (supabaseClient) {
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+    updateAuthUser(session?.user || null);
+  });
+
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (!error) updateAuthUser(data.session?.user || null);
+  });
+}
 
 
 /* ==========================================
