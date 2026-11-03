@@ -778,7 +778,7 @@ function renderProducts(target = "#productGrid", list = getFilteredProducts()) {
           class="quick-add"
           data-action="quick-add"
           data-id="${product.id}">
-          Quick add +
+          Add to cart +
         </button>
       </div>
 
@@ -936,7 +936,7 @@ function addToCart(productId, size = "", color = "") {
   }
 
   renderCart();
-  showToast(`${product.name} added to your bag!`);
+  showToast(`${product.name} added to your cart!`);
 }
 
 function cartQuantity() {
@@ -962,7 +962,7 @@ function renderCart() {
     $("#cartItems").innerHTML = `
       <div class="cart-empty">
         <p style="font-size:35px;">♡</p>
-        <p>Your bag is waiting for something fabulous.</p>
+        <p>Your cart is waiting for something fabulous.</p>
         <p>Explore the collection and find your next favourite.</p>
       </div>
     `;
@@ -1101,7 +1101,7 @@ function openProductModal(productId) {
         </p>
 
         <button class="btn btn-dark modal-add" id="modalAddToCart">
-          Add to bag — ${money(product.price)}
+          Add to cart — ${money(product.price)}
         </button>
       </div>
     </div>
@@ -1494,12 +1494,12 @@ $("#newsletterForm").addEventListener("submit", event => {
 $("#checkoutButton").addEventListener("click", () => {
   if (state.cart.size === 0) {
     $("#checkoutMessage").textContent =
-      "Your bag is empty. Add a piece before continuing.";
+      "Your cart is empty. Add a piece before continuing.";
     return;
   }
 
   $("#checkoutMessage").textContent =
-    "Your bag is ready! Connect a secure payment provider and order backend to enable checkout. No order or payment has been placed.";
+    "Your cart is ready! Connect a secure payment provider and order backend to enable checkout. No order or payment has been placed.";
 });
 
 /* ==========================================
@@ -1920,7 +1920,7 @@ if (supabaseClient) {
     const total = getCartTotal();
 
     if (state.cart.size === 0 || total <= 0) {
-      alert("Your shopping bag is empty. Add an item before checking out.");
+      alert("Your cart is empty. Add an item before checking out.");
       return;
     }
 
